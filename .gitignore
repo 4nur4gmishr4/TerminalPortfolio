@@ -23,13 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 
-# Generated components
-src/components/ui/
-
-# Unwanted root files
-code1.html
-code2.html
-code3.html
-code4.html
-DESIGN.md
-web/
