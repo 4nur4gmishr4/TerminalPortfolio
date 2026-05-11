@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KINETIC_OS Initialization</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#29313c",
+                        "on-tertiary-fixed-variant": "#25496c",
+                        "surface-variant": "#2d3541",
+                        "tertiary-container": "#c0dcff",
+                        "primary-container": "#00f0ff",
+                        "surface-container-highest": "#2d3541",
+                        "secondary-container": "#d7e404",
+                        "surface": "#0c141e",
+                        "primary": "#dbfcff",
+                        "surface-container-lowest": "#070f19",
+                        "background": "#0c141e",
+                        "inverse-primary": "#006970",
+                        "on-background": "#dbe3f2",
+                        "secondary-fixed-dim": "#c3d000",
+                        "tertiary-fixed": "#d0e4ff",
+                        "on-tertiary-fixed": "#001d35",
+                        "primary-fixed-dim": "#00dbe9",
+                        "outline-variant": "#3b494b",
+                        "on-secondary-container": "#5d6400",
+                        "on-surface-variant": "#b9cacb",
+                        "surface-container-low": "#141c27",
+                        "on-primary-container": "#006970",
+                        "on-primary-fixed-variant": "#004f54",
+                        "on-primary": "#00363a",
+                        "on-secondary": "#2f3300",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#18202b",
+                        "surface-tint": "#00dbe9",
+                        "outline": "#849495",
+                        "surface-dim": "#0c141e",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#dfed1a",
+                        "on-surface": "#dbe3f2",
+                        "tertiary": "#f2f6ff",
+                        "inverse-surface": "#dbe3f2",
+                        "tertiary-fixed-dim": "#a7caf3",
+                        "on-tertiary": "#063254",
+                        "on-primary-fixed": "#002022",
+                        "primary-fixed": "#7df4ff",
+                        "surface-container-high": "#232a36",
+                        "on-secondary-fixed": "#1b1d00",
+                        "on-tertiary-container": "#3e6186",
+                        "secondary": "#f5ff7d",
+                        "surface-bright": "#323a45",
+                        "on-secondary-fixed-variant": "#454a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "xl": "48px",
+                        "window-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "data-mono": ["JetBrains Mono"],
+                        "label-caps": ["JetBrains Mono"],
+                        "display-lg": ["Geist"],
+                        "body-base": ["Geist"],
+                        "headline-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "data-mono": ["13px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "600" }],
+                        "body-base": ["14px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #07090B;
+            background-image: radial-gradient(circle at 50% 50%, rgba(0, 219, 233, 0.05) 0%, transparent 60%);
+        }
+        
+        /* Glass/Holographic styles from guidance */
+        .glass-window {
+            background-color: rgba(13, 15, 18, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        
+        .glass-window::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.15), rgba(255,255,255,0.02));
+        }
+
+        .ambient-shadow {
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .terminal-input {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+        }
+        
+        .terminal-input:focus {
+            outline: none;
+            border-bottom-color: #00dbe9;
+        }
+
+        /* Glitch effect for intro text */
+        .glitch-text {
+            position: relative;
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen flex flex-col items-center justify-center overflow-hidden font-data-mono text-data-mono relative">
+<!-- Ambient Particles Layer -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgoJPHJlY3Qgd2lkdGg9IjQiIGhlaWdodD0iNCIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjA1Ii8+Cjwvc3ZnPg==')]"></div>
+<div class="absolute w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"></div>
+<!-- Main Boot Container -->
+<main class="z-10 w-full max-w-4xl p-lg flex flex-col gap-xl relative">
+<!-- Header / OS Version -->
+<header class="flex justify-between items-start opacity-70">
+<div class="flex flex-col gap-xs">
+<h1 class="font-display-lg text-display-lg text-primary glitch-text">KINETIC_OS</h1>
+<p class="font-label-caps text-label-caps text-primary-fixed-dim uppercase tracking-widest">v2.4.0 // Build 891.2</p>
+</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant flex flex-col text-right">
+<span>SYS_TIME: <span class="text-on-background">04:20:12</span></span>
+<span>STATUS: <span class="text-primary">ONLINE</span></span>
+</div>
+</header>
+<!-- Boot Log Window -->
+<section class="glass-window rounded-lg ambient-shadow p-md min-h-[300px] flex flex-col relative overflow-hidden">
+<!-- Window Chrome -->
+<div class="flex gap-sm mb-md pb-xs border-b border-white/10 items-center opacity-50 hover:opacity-100 transition-opacity">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<div class="w-2 h-2 rounded-full bg-secondary-fixed"></div>
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span class="ml-sm font-label-caps text-label-caps uppercase">System.log</span>
+</div>
+<!-- Log Entries -->
+<div class="flex flex-col gap-xs font-data-mono text-data-mono text-on-surface-variant flex-grow">
+<div class="flex gap-md group cursor-default">
+<span class="opacity-50 min-w-[80px]">[0.001]</span>
+<span class="group-hover:text-primary transition-colors">Initializing core modules...</span>
+<span class="ml-auto text-primary">OK</span>
+</div>
+<div class="flex gap-md group cursor-default">
+<span class="opacity-50 min-w-[80px]">[0.042]</span>
+<span class="group-hover:text-primary transition-colors">Mounting virtual filesystems...</span>
+<span class="ml-auto text-primary">OK</span>
+</div>
+<div class="flex gap-md group cursor-default">
+<span class="opacity-50 min-w-[80px]">[0.105]</span>
+<span class="group-hover:text-primary transition-colors">Establishing secure neural handshake...</span>
+<span class="ml-auto text-primary">OK</span>
+</div>
+<div class="flex gap-md group cursor-default">
+<span class="opacity-50 min-w-[80px]">[0.890]</span>
+<span class="group-hover:text-primary transition-colors text-error">Warning: Unidentified anomalous signature detected.</span>
+<span class="ml-auto text-error">BYPASS</span>
+</div>
+<div class="flex gap-md group cursor-default">
+<span class="opacity-50 min-w-[80px]">[1.204]</span>
+<span class="group-hover:text-primary transition-colors">CORE_SYSTEM_READY</span>
+<span class="ml-auto text-primary">OK</span>
+</div>
+<div class="flex gap-md group cursor-default border-b border-white/5 pb-sm mb-sm">
+<span class="opacity-50 min-w-[80px]">[1.250]</span>
+<span class="text-on-background">SHELL_INITIALIZED</span>
+<span class="ml-auto text-primary">OK</span>
+</div>
+<!-- Interactive Prompt Area -->
+<div class="mt-auto flex items-center gap-sm pt-md">
+<span class="text-primary">USER_01@KINETIC ~ %</span>
+<input autofocus="" class="terminal-input flex-grow font-data-mono text-data-mono text-on-background p-0 border-0 border-b border-transparent focus:ring-0" placeholder="_" type="text"/>
+</div>
+</div>
+</section>
+<!-- Quick Access / Data Grid (Bento Style) -->
+<section class="grid grid-cols-4 gap-md mt-lg">
+<!-- Quick Action Card -->
+<div class="glass-window rounded-lg ambient-shadow p-md flex flex-col gap-sm hover:border-primary/30 transition-colors cursor-pointer group">
+<div class="flex justify-between items-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">terminal</span>
+<span class="font-label-caps text-label-caps bg-white/5 px-2 py-1 rounded">CMD</span>
+</div>
+<span class="font-body-base text-body-base mt-auto">New Terminal</span>
+</div>
+<!-- Stats Card -->
+<div class="glass-window rounded-lg ambient-shadow p-md col-span-2 flex justify-between items-center relative overflow-hidden">
+<div class="flex flex-col gap-xs z-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Network Load</span>
+<span class="font-headline-md text-headline-md text-primary">42.8 TB/s</span>
+</div>
+<div class="z-10 flex gap-1 items-end h-full opacity-60">
+<!-- Faux bar chart -->
+<div class="w-1 bg-primary h-1/3"></div>
+<div class="w-1 bg-primary h-2/3"></div>
+<div class="w-1 bg-primary h-1/2"></div>
+<div class="w-1 bg-primary h-full"></div>
+<div class="w-1 bg-primary h-4/5"></div>
+<div class="w-1 bg-primary h-1/3"></div>
+</div>
+<div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-primary/10 to-transparent pointer-events-none"></div>
+</div>
+<!-- Quick Action Card -->
+<div class="glass-window rounded-lg ambient-shadow p-md flex flex-col gap-sm hover:border-primary/30 transition-colors cursor-pointer group">
+<div class="flex justify-between items-center text-on-surface-variant group-hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">power_settings_new</span>
+<span class="font-label-caps text-label-caps bg-white/5 px-2 py-1 rounded">SYS</span>
+</div>
+<span class="font-body-base text-body-base mt-auto">Shutdown</span>
+</div>
+</section>
+</main>
+</body></html>
