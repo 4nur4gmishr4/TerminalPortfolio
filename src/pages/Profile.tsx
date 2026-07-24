@@ -8,6 +8,44 @@ import { portfolioData } from "@/types/portfolio";
 import { formatIndex, generateId } from "@/lib/utils";
 
 
+const SKILL_SLUG_MAP: Record<string, string> = {
+  "Python": "python",
+  "TypeScript/JavaScript": "typescript",
+  "Dart": "dart",
+  "C/C++": "cplusplus",
+  "SQL": "postgresql",
+  "Bash": "gnubash",
+  "TensorFlow": "tensorflow",
+  "OpenCV": "opencv",
+  "LangChain": "langchain",
+  "LangGraph": "langchain",
+  "Gemini API": "googlegemini",
+  "Claude Code": "anthropic",
+  "GitHub Copilot": "githubcopilot",
+  "React.js": "react",
+  "Next.js": "nextdotjs",
+  "Flutter": "flutter",
+  "Tailwind CSS": "tailwindcss",
+  "Redux": "redux",
+  "Node.js": "nodedotjs",
+  "Express.js": "express",
+  "Flask": "flask",
+  "JWT": "jsonwebtokens",
+  "PostgreSQL": "postgresql",
+  "Prisma": "prisma",
+  "SQLAlchemy": "sqlalchemy",
+  "MongoDB": "mongodb",
+  "Firebase": "firebase",
+  "Supabase": "supabase",
+  "Vector DBs (Pinecone, Milvus)": "pinecone",
+  "AWS (EC2/S3)": "amazonwebservices",
+  "Docker": "docker",
+  "Git": "git",
+  "GitHub Actions": "githubactions",
+  "Linux": "linux",
+  "Postman": "postman",
+};
+
 const Profile = () => {
 
   return (
@@ -94,9 +132,15 @@ const Profile = () => {
             <section key={group.name} className="skills-matrix__row" aria-labelledby={`${generateId(group.name)}-skills`}>
               <h3 id={`${generateId(group.name)}-skills`}>{group.name}</h3>
               <ul>
-                {group.skills.map((skill) => (
-                  <li key={skill}>{skill}</li>
-                ))}
+                {group.skills.map((skill) => {
+                  const slug = SKILL_SLUG_MAP[skill];
+                  return (
+                    <li key={skill} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      {slug && <img src={`https://cdn.simpleicons.org/${slug}/16221b`} alt="" style={{ width: '16px', height: '16px' }} />}
+                      {skill}
+                    </li>
+                  );
+                })}
               </ul>
             </section>
           ))}
