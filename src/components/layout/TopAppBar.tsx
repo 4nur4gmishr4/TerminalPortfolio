@@ -1,6 +1,7 @@
 import { Command, Search } from "lucide-react";
 import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
 import githubAnimation from "@/assets/animations/github.json";
+import linkedinAnimation from "@/assets/animations/linkedin.json";
 import menuAnimation from "@/assets/animations/menu-v3.json";
 import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
@@ -13,6 +14,27 @@ interface TopAppBarProps {
 
 export const TopAppBar = ({ onCommandOpen }: TopAppBarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [startY, setStartY] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setStartY(e.touches[0].clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (startY === null) return;
+    const currentY = e.touches[0].clientY;
+    const diff = startY - currentY;
+    
+    // Swipe up by 40px triggers close
+    if (diff > 40) {
+      setMobileOpen(false);
+      setStartY(null);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setStartY(null);
+  };
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -21,6 +43,17 @@ export const TopAppBar = ({ onCommandOpen }: TopAppBarProps) => {
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   const closeMobileMenu = () => setMobileOpen(false);
 
@@ -54,6 +87,9 @@ export const TopAppBar = ({ onCommandOpen }: TopAppBarProps) => {
             <span>Quick links</span>
             <kbd>Ctrl K</kbd>
           </button>
+          <a className="icon-button" href={portfolioData.contact.linkedin} target="_blank" rel="noreferrer" aria-label="Open Anurag Mishra's LinkedIn profile">
+            <AnimatedIcon animationData={linkedinAnimation} loop speed={0.5} size={22} />
+          </a>
           <a className="icon-button" href={portfolioData.contact.github} target="_blank" rel="noreferrer" aria-label="Open Anurag Mishra's GitHub profile">
             <AnimatedIcon animationData={githubAnimation} loop speed={0.5} size={22} />
           </a>
@@ -64,14 +100,27 @@ export const TopAppBar = ({ onCommandOpen }: TopAppBarProps) => {
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
           >
-            <AnimatedIcon animationData={menuAnimation} isToggled={mobileOpen} size={26} />
+            <AnimatedIcon animationData={menuAnimation} isToggled={mobileOpen} speed={2.5} size={26} />
             <span className="sr-only">{mobileOpen ? "Close navigation" : "Open navigation"}</span>
           </button>
         </div>
       </div>
 
-      {mobileOpen && (
-        <nav id="mobile-navigation" className="mobile-navigation" aria-label="Mobile navigation">
+      <div 
+        className={`mobile-overlay ${mobileOpen ? 'is-open' : ''}`} 
+        onClick={closeMobileMenu}
+        aria-hidden="true"
+      />
+
+      <nav 
+        id="mobile-navigation" 
+        className={`mobile-navigation ${mobileOpen ? 'is-open' : ''}`} 
+        aria-label="Mobile navigation"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div className="mobile-navigation__wrapper">
           <div className="mobile-navigation__inner">
             {siteRoutes.filter(route => route.path).map((item) => (
               <NavLink
@@ -96,8 +145,11 @@ export const TopAppBar = ({ onCommandOpen }: TopAppBarProps) => {
               Open quick links
             </button>
           </div>
-        </nav>
-      )}
+          <div className="mobile-navigation__grabber-container">
+            <div className="mobile-navigation__grabber" />
+          </div>
+        </div>
+      </nav>
     </header>
   );
 };
