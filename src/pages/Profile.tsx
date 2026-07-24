@@ -4,6 +4,7 @@ import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
 import folderAnimation from "@/assets/animations/folder.json";
 import starAnimation from "@/assets/animations/star.json";
 import arrowUpAnimation from "@/assets/animations/arrow-up.json";
+import arrowDownAnimation from "@/assets/animations/arrow-down.json";
 import { portfolioData } from "@/types/portfolio";
 import { formatIndex, generateId } from "@/lib/utils";
 
@@ -200,7 +201,7 @@ const Profile = () => {
         </div>
         <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "24px" }}>
           <a className="button button--secondary" href={portfolioData.contact.resume} download>
-            Download Resume <AnimatedIcon animationData={arrowUpAnimation} loop size={20} className="rotate-90" />
+            Download Resume <AnimatedIcon animationData={arrowDownAnimation} loop size={20} />
           </a>
           <Link className="button button--primary" to="/work#featured-work">
             View projects <AnimatedIcon animationData={arrowUpAnimation} loop size={20} invertColors className="rotate-45" />

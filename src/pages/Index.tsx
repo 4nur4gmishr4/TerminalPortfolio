@@ -51,7 +51,7 @@ const Index = () => {
               Get in touch <AnimatedIcon animationData={arrowUpAnimation} loop size={20} className="rotate-45" />
             </Link>
             <a className="button button--secondary" href={portfolioData.contact.resume} download>
-              Download Resume <AnimatedIcon animationData={arrowUpAnimation} loop size={20} className="rotate-90" />
+              Download Resume <AnimatedIcon animationData={arrowDownAnimation} loop size={20} />
             </a>
           </div>
         </div>
