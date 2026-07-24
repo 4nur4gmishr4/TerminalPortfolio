@@ -31,7 +31,6 @@ dist-ssr
 .env.production.local
 
 # Agent / Tooling
-.agents/
 .eslintcache
 detect-error.js
 *.js.temp
