@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Matter from 'matter-js';
+import * as Matter from 'matter-js';
 import { portfolioData } from '@/types/portfolio';
 
 // Flatten the skills to get all individual strings

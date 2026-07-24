@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { portfolioData, projects } from "@/types/portfolio";
 import { X, Minus, Square } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 interface CommandHistory {
   id: string;
