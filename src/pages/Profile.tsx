@@ -9,6 +9,8 @@ import { portfolioData } from "@/types/portfolio";
 import { formatIndex, generateId } from "@/lib/utils";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { PhysicsSkills } from "@/components/portfolio/PhysicsSkills";
+import { SafeComponent } from "@/components/ui/SafeComponent";
+import { Download, Terminal } from "lucide-react";
 
 
 const SKILL_SLUG_MAP: Record<string, string> = {
@@ -136,7 +138,9 @@ const Profile = () => {
           </div>
         </div>
         <div className="mt-8">
-          <PhysicsSkills />
+          <SafeComponent>
+            <PhysicsSkills />
+          </SafeComponent>
         </div>
       </section>
       </FadeIn>
