@@ -73,7 +73,7 @@ function CarouselItemComponent({ item, index, itemWidth, round, trackItemOffset,
       }}
       transition={transition}
     >
-      <Link to={`/projects/${item.id}`} style={{ textDecoration: 'none', color: 'inherit', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+      <Link to={`/projects/${item.id}`} draggable={false} style={{ textDecoration: 'none', color: 'inherit', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative', userSelect: 'none' }}>
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
           <div className={`carousel-item-header ${round ? 'round' : ''}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             {item.icon && <span className="carousel-icon-container">{item.icon}</span>}
@@ -106,7 +106,7 @@ function CarouselItemComponent({ item, index, itemWidth, round, trackItemOffset,
                   const iconUrl = slug ? `https://cdn.simpleicons.org/${slug}/8a8a8a` : null;
                   return (
                     <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', padding: '4px 8px', background: 'var(--terminal)', color: 'var(--terminal-text)', borderRadius: '4px', fontWeight: 500, whiteSpace: 'nowrap' }}>
-                      {iconUrl && <img src={iconUrl} alt="" style={{ width: '12px', height: '12px' }} />}
+                      {iconUrl && <img src={iconUrl} alt="" draggable={false} style={{ width: '12px', height: '12px' }} />}
                       {tag}
                     </span>
                   );
@@ -128,7 +128,7 @@ function CarouselItemComponent({ item, index, itemWidth, round, trackItemOffset,
                 {item.logoNode}
               </div>
             ) : (
-              <img src={item.logoUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+              <img src={item.logoUrl} alt="" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
             )}
           </div>
         )}
