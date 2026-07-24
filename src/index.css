@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 :root {
   --canvas: #fafaf8;
   --surface: #ffffff;
@@ -507,9 +519,9 @@ h3 {
 .home-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
-  align-items: end;
+  align-items: center;
   gap: 52px;
-  min-height: 520px;
+  min-height: 380px;
   padding: 32px 0 58px;
   border-bottom: 1px solid var(--line);
 }
