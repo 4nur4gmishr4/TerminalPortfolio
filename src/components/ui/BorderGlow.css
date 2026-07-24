@@ -1,0 +1,43 @@
+.border-glow-wrapper {
+  position: relative;
+  border-radius: var(--radius-md); /* Match impact-ledger radius */
+  overflow: hidden;
+  --mouse-x: -1000px;
+  --mouse-y: -1000px;
+}
+
+.border-glow-border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px; /* border thickness */
+  background: var(--line);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+/* Hover glow for desktop */
+@media (min-width: 820px) {
+  .border-glow-wrapper:hover .border-glow-border {
+    background: radial-gradient(
+      350px circle at var(--mouse-x) var(--mouse-y),
+      var(--primary) 0%,
+      var(--line) 100%
+    );
+  }
+}
+
+/* Auto rotating glow for mobile */
+@media (max-width: 819px) {
+  .border-glow-border {
+    background: conic-gradient(from var(--angle), var(--line) 0%, var(--primary) 50%, var(--line) 100%);
+  }
+}
+
+.border-glow-content {
+  border-radius: inherit;
+  height: 100%;
+}

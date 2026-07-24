@@ -585,12 +585,16 @@ h3 {
   border-color: var(--ink-soft);
 }
 
-.impact-ledger {
+.impact-ledger-glow {
   align-self: stretch;
+  display: flex;
+}
+
+.impact-ledger {
+  width: 100%;
   display: flex;
   flex-direction: column;
   min-height: 330px;
-  border: 1px solid var(--terminal);
   border-radius: var(--radius-sm);
   background: var(--terminal);
   color: var(--terminal-text);

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
 import arrowUpAnimation from "@/assets/animations/arrow-up.json";
 import arrowDownAnimation from "@/assets/animations/arrow-down.json";
+import { BorderGlow } from "@/components/ui/BorderGlow";
 import mailAnimation from "@/assets/animations/mail.json";
 import { CommandConsole } from "@/components/portfolio/CommandConsole";
 import { TypingReveal } from "@/components/portfolio/TypingReveal";
@@ -60,24 +61,26 @@ const Index = () => {
         </FadeIn>
 
         <FadeIn delay={0.3}>
-        <aside className="impact-ledger" aria-label="Impact at a glance">
-          <div className="impact-ledger__header">
-            <span>At a glance</span>
-            <span>2026</span>
-          </div>
-          <div className="impact-ledger__metrics">
-            {portfolioData.metrics.map((metric) => (
-              <div key={metric.label}>
-                <strong>{metric.value}</strong>
-                <span>{metric.label}</span>
-              </div>
-            ))}
-          </div>
-          <div className="impact-ledger__footer">
-            <span>Focus</span>
-            <p>Web tools, backend services, and useful automation.</p>
-          </div>
-        </aside>
+        <BorderGlow className="impact-ledger-glow">
+          <aside className="impact-ledger" aria-label="Impact at a glance">
+            <div className="impact-ledger__header">
+              <span>At a glance</span>
+              <span>2026</span>
+            </div>
+            <div className="impact-ledger__metrics">
+              {portfolioData.metrics.map((metric) => (
+                <div key={metric.label}>
+                  <strong>{metric.value}</strong>
+                  <span>{metric.label}</span>
+                </div>
+              ))}
+            </div>
+            <div className="impact-ledger__footer">
+              <span>Focus</span>
+              <p>Web tools, backend services, and useful automation.</p>
+            </div>
+          </aside>
+        </BorderGlow>
         </FadeIn>
       </section>
 
