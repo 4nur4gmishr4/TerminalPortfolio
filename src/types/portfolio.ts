@@ -89,7 +89,7 @@ export const portfolioData = {
     email: "anuragmishrasnag06082004@gmail.com",
     linkedin: "https://www.linkedin.com/in/4nur4gmishra",
     github: "https://github.com/4nur4gmishr4",
-    website: "https://anuragsterminalbay.vercel.app",
+    website: "https://portfolioterminal-bay.vercel.app/",
     resume: "/Anurag_s_Resume.pdf",
   },
   metrics: [
@@ -148,24 +148,11 @@ export const portfolioData = {
     "Developer Tool Author: Architected and continuously maintained an open-source VS Code extension, driving a combined reach of 21,700+ cumulative users/downloads across software projects.",
     "Finalist (4th Place), Delhi Nexify Hackathon: Architected an AI-driven financial advisor prototype, competing against 100+ teams from across India.",
   ],
-  articles: [
-    {
-      title: "Building FaultLine: Real-time AST Parsing for Intelligent Debugging",
-      url: "https://dev.to/4nur4gmishr4/building-faultline-real-time-ast-parsing-for-intelligent-debugging",
-      platform: "Dev.to",
-      date: "May 2026"
-    },
-    {
-      title: "Orchestrating Multiple LLMs with Pegasus: A Deep Dive into Autonomous Agents",
-      url: "https://medium.com/@4nur4gmishr4/orchestrating-multiple-llms-with-pegasus",
-      platform: "Medium",
-      date: "Jun 2026"
-    }
-  ],
+
   links: [
     { label: "GitHub", href: "https://github.com/4nur4gmishr4" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/4nur4gmishra" },
-    { label: "Portfolio", href: "https://anuragsterminalbay.vercel.app" },
+    { label: "Portfolio", href: "https://portfolioterminal-bay.vercel.app/" },
   ] satisfies ProfileLink[],
 };
 
@@ -212,8 +199,7 @@ export const projects: Project[] = [
     ],
     architecture: ["VS Code", "Find the failed command or code error", "Choose a code helper", "Show a clear next step"],
     links: [
-      { label: "GitHub", href: "https://github.com/4nur4gmishr4/vscode-faultline-Extension", type: "github" },
-      { label: "Marketplace", href: "https://marketplace.visualstudio.com/items?itemName=4nur4gmishr4.faultline", type: "marketplace" },
+      { label: "GitHub", href: "https://github.com/4nur4gmishr4/vscode-FaultLine-Extension", type: "github" },
       { label: "Product site source", href: "https://github.com/4nur4gmishr4/Faultline.site", type: "github" },
     ],
   },
@@ -307,7 +293,7 @@ export const projects: Project[] = [
     ],
     stack: ["Flask", "Python", "PostgreSQL", "SQLAlchemy", "Gemini API", "Docker"],
     architecture: ["Get market data", "Store account data", "Review spending", "Show a simple summary"],
-    links: [{ label: "GitHub (private)", href: "https://github.com/4nur4gmishr4/SmartMoney", type: "github" }],
+    links: [{ label: "GitHub (private)", href: "https://github.com/4nur4gmishr4/Smart-Money", type: "github" }],
   },
   {
     slug: "brothers-fitness",

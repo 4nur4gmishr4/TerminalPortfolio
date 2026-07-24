@@ -166,34 +166,6 @@ const Profile = () => {
         </ol>
       </section>
 
-      <section className="profile-section profile-section--articles" aria-labelledby="articles-title">
-        <div className="profile-section__heading">
-          <Layers3 size={20} aria-hidden="true" />
-          <div>
-            <p className="eyebrow">Writing</p>
-            <h2 id="articles-title">Technical Writing & Blogs.</h2>
-          </div>
-        </div>
-        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-          {portfolioData.articles?.map((article) => (
-            <a 
-              key={article.title} 
-              href={article.url} 
-              target="_blank" 
-              rel="noreferrer"
-              className="article-link-card"
-              style={{ display: 'block', textDecoration: 'none', color: 'inherit', padding: '16px', border: '1px solid var(--line)', borderRadius: 'var(--radius-xs)', transition: 'background-color 0.2s' }}
-            >
-              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>{article.title}</h3>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: 'var(--muted)' }}>
-                <span>{article.platform}</span>
-                <span>{article.date}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-
       <section className="profile-next-step" aria-label="Explore project work or resume">
         <div>
           <p className="eyebrow">Next</p>
