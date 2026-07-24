@@ -43,13 +43,16 @@ const Index = () => {
             <TypingReveal text={headline} />
           </h1>
           <p className="home-hero__summary">{portfolioData.summary}</p>
-          <div className="page-actions">
+          <div className="page-actions" style={{ flexWrap: 'wrap' }}>
             <Link className="button button--primary" to="/work#featured-work">
               See my work <AnimatedIcon animationData={arrowDownAnimation} loop size={20} invertColors className="-rotate-45" />
             </Link>
             <Link className="button button--secondary" to="/contact#message">
               Get in touch <AnimatedIcon animationData={arrowUpAnimation} loop size={20} className="rotate-45" />
             </Link>
+            <a className="button button--secondary" href={portfolioData.contact.resume} download>
+              Download Resume <AnimatedIcon animationData={arrowUpAnimation} loop size={20} className="rotate-90" />
+            </a>
           </div>
         </div>
 
