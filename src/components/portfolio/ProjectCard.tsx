@@ -15,9 +15,23 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const location = useLocation();
   const indexLabel = formatIndex(index);
 
+  const handleMouseEnter = () => {
+    if (project.themeColor) {
+      document.documentElement.style.setProperty('--primary', project.themeColor);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    document.documentElement.style.removeProperty('--primary');
+  };
+
   return (
     <FadeIn delay={0.1}>
-    <article className="project-card">
+    <article 
+      className="project-card magnetic" 
+      onMouseEnter={handleMouseEnter} 
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="project-card__meta">
         <span>{indexLabel}</span>
         <span>{project.category}</span>

@@ -20,6 +20,7 @@ export interface CarouselItem {
   logoNode?: React.ReactNode;
   impact?: string[];
   category?: string;
+  themeColor?: string;
 }
 
 const DRAG_BUFFER = 0;
@@ -60,18 +61,34 @@ function CarouselItemComponent({ item, index, itemWidth, round, trackItemOffset,
   const range = [-(index + 1) * trackItemOffset, -index * trackItemOffset, -(index - 1) * trackItemOffset];
   const outputRange = [90, 0, -90];
   const rotateY = useTransform(x, range, outputRange, { clamp: false });
+  const scaleProgress = useTransform(x, range, [0.95, 1, 0.95]);
+  const opacityProgress = useTransform(x, range, [0.5, 1, 0.5]);
+
+  const handleMouseEnter = () => {
+    if (item.themeColor) {
+      document.documentElement.style.setProperty('--primary', item.themeColor);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    document.documentElement.style.removeProperty('--primary');
+  };
 
   return (
     <motion.div
       key={`${item?.id ?? index}-${index}`}
-      className={`carousel-item ${round ? 'round' : ''}`}
+      className={`carousel-item magnetic ${round ? 'carousel-item--round' : 'carousel-item--rounded'}`}
       style={{
         width: itemWidth,
         height: round ? itemWidth : '100%',
         rotateY: rotateY,
+        scale: scaleProgress,
+        opacity: opacityProgress,
         ...(round && { borderRadius: '50%' })
       }}
       transition={transition}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <Link to={`/projects/${item.id}`} draggable={false} style={{ textDecoration: 'none', color: 'inherit', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative', userSelect: 'none' }}>
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>

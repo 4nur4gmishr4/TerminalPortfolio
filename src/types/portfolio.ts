@@ -47,6 +47,7 @@ export interface Project {
   client?: string;
   status?: string;
   logo?: string;
+  themeColor?: string;
   metric?: Metric;
   impact: string[];
   features: string[];

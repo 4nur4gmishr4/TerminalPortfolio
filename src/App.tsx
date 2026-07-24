@@ -1,6 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Layout } from "./components/layout";
 import { ScrollManager } from "./components/layout/ScrollManager";
+import { CustomCursor } from "./components/ui/CustomCursor";
+import CanvasBackground from "./components/ui/CanvasBackground";
 import Contact from "./pages/Contact";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -14,6 +16,8 @@ const AppRoutes = () => {
 
   return (
     <>
+      <CanvasBackground />
+      <CustomCursor />
       <ScrollManager />
       <Routes location={backgroundLocation || location}>
         <Route element={<Layout />}>
