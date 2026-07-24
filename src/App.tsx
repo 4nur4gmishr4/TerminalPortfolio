@@ -1,7 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Layout } from "./components/layout";
 import { ScrollManager } from "./components/layout/ScrollManager";
-import CanvasBackground from "./components/ui/CanvasBackground";
 import { TerminalOverlay } from "./components/ui/TerminalOverlay";
 import { SafeComponent } from "./components/ui/SafeComponent";
 import Contact from "./pages/Contact";
@@ -17,9 +16,6 @@ const AppRoutes = () => {
 
   return (
     <>
-      <SafeComponent>
-        <CanvasBackground />
-      </SafeComponent>
       <SafeComponent>
         <TerminalOverlay />
       </SafeComponent>
