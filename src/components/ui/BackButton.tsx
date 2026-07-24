@@ -20,7 +20,6 @@ export const BackButton = () => {
         color: "var(--ink-soft)",
         fontSize: "13px",
         fontWeight: 500,
-        fontWeight: 500,
         cursor: "pointer",
         padding: "8px 0",
         marginBottom: "24px",
