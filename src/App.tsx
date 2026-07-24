@@ -3,6 +3,7 @@ import { Layout } from "./components/layout";
 import { ScrollManager } from "./components/layout/ScrollManager";
 import { CustomCursor } from "./components/ui/CustomCursor";
 import CanvasBackground from "./components/ui/CanvasBackground";
+import { TerminalOverlay } from "./components/ui/TerminalOverlay";
 import Contact from "./pages/Contact";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -17,6 +18,7 @@ const AppRoutes = () => {
   return (
     <>
       <CanvasBackground />
+      <TerminalOverlay />
       <CustomCursor />
       <ScrollManager />
       <Routes location={backgroundLocation || location}>

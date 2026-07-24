@@ -89,7 +89,7 @@ export function TerminalOverlay() {
 
       case "projects":
         output = (
-          <div className="space-y-4 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+          <div className="space-y-4 max-h-80 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-track]:bg-transparent hover:[&::-webkit-scrollbar-thumb]:bg-white/30 rounded">
             {projects.map((p) => (
               <div key={p.slug} className="text-gray-300 border-l-2 border-white/10 pl-3">
                 <div className="flex items-center space-x-2">
@@ -268,7 +268,7 @@ export function TerminalOverlay() {
 
             {/* Terminal Body */}
             <div
-              className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 custom-scrollbar"
+              className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-track]:bg-transparent hover:[&::-webkit-scrollbar-thumb]:bg-white/20"
               onClick={() => inputRef.current?.focus()}
             >
               <div className="text-gray-400 mb-6 space-y-1">

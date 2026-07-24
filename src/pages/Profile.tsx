@@ -8,6 +8,7 @@ import arrowDownAnimation from "@/assets/animations/arrow-down.json";
 import { portfolioData } from "@/types/portfolio";
 import { formatIndex, generateId } from "@/lib/utils";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { PhysicsSkills } from "@/components/portfolio/PhysicsSkills";
 
 
 const SKILL_SLUG_MAP: Record<string, string> = {
@@ -134,23 +135,8 @@ const Profile = () => {
             <h2 id="skills-title">Tools I use to build software.</h2>
           </div>
         </div>
-        <div className="skills-matrix">
-          {portfolioData.skills.map((group) => (
-            <section key={group.name} className="skills-matrix__row" aria-labelledby={`${generateId(group.name)}-skills`}>
-              <h3 id={`${generateId(group.name)}-skills`}>{group.name}</h3>
-              <ul>
-                {group.skills.map((skill) => {
-                  const slug = SKILL_SLUG_MAP[skill];
-                  return (
-                    <li key={skill} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      {slug && <img src={`https://cdn.simpleicons.org/${slug}/16221b`} alt="" style={{ width: '16px', height: '16px' }} />}
-                      {skill}
-                    </li>
-                  );
-                })}
-              </ul>
-            </section>
-          ))}
+        <div className="mt-8">
+          <PhysicsSkills />
         </div>
       </section>
       </FadeIn>
