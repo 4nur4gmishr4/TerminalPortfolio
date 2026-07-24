@@ -377,7 +377,7 @@ textarea:focus-visible {
 .mobile-navigation__inner {
   width: min(calc(100% - (var(--gutter) * 2)), var(--page-width));
   margin: 0 auto;
-  padding: 0;
+  padding: 12px 0;
   display: grid;
   gap: 0;
   background: var(--surface);
