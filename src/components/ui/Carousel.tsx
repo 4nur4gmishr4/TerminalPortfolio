@@ -123,7 +123,7 @@ function CarouselItemComponent({ item, index, itemWidth, round, trackItemOffset,
                   const iconUrl = slug ? `https://cdn.simpleicons.org/${slug}/8a8a8a` : null;
                   return (
                     <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', padding: '4px 8px', background: 'var(--terminal)', color: 'var(--terminal-text)', borderRadius: '4px', fontWeight: 500, whiteSpace: 'nowrap' }}>
-                      {iconUrl && <img src={iconUrl} alt="" draggable={false} style={{ width: '12px', height: '12px' }} />}
+                      {iconUrl && <img src={iconUrl} alt={`${item.title} logo`} draggable={false} style={{ width: '12px', height: '12px' }} />}
                       {tag}
                     </span>
                   );
@@ -145,7 +145,7 @@ function CarouselItemComponent({ item, index, itemWidth, round, trackItemOffset,
                 {item.logoNode}
               </div>
             ) : (
-              <img src={item.logoUrl} alt="" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+              <img src={item.logoUrl} alt={`${item.title} icon`} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
             )}
           </div>
         )}

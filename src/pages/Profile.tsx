@@ -143,7 +143,7 @@ const Profile = () => {
                   const slug = SKILL_SLUG_MAP[skill];
                   return (
                     <li key={skill} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      {slug && <img src={`https://cdn.simpleicons.org/${slug}/16221b`} alt="" style={{ width: '16px', height: '16px' }} />}
+                      {slug && <img src={`https://cdn.simpleicons.org/${slug}/16221b`} alt={`${skill} icon`} style={{ width: '16px', height: '16px' }} />}
                       {skill}
                     </li>
                   );

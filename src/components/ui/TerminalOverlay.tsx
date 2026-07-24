@@ -115,7 +115,7 @@ export function TerminalOverlay() {
         );
         break;
 
-      case "cat":
+      case "cat": {
         const file = args[1]?.toLowerCase();
         if (!file) {
           output = <span className="text-red-400">Usage: cat &lt;file&gt;</span>;
@@ -156,6 +156,7 @@ export function TerminalOverlay() {
           output = <span className="text-red-400">cat: {file}: No such file or directory</span>;
         }
         break;
+      }
 
       case "echo":
         output = <span className="text-gray-300">{args.slice(1).join(" ")}</span>;
