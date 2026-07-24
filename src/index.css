@@ -990,6 +990,12 @@ h3 {
   color: var(--terminal-muted);
 }
 
+.article-link-card:hover {
+  background-color: var(--surface);
+  border-color: var(--line-strong);
+  cursor: pointer;
+}
+
 .command-console__output > p .console-dim {
   display: inline-block;
   min-width: 82px;

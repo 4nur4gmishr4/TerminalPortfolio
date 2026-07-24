@@ -123,14 +123,47 @@ const Profile = () => {
         </ol>
       </section>
 
-      <section className="profile-next-step" aria-label="Explore project work">
+      <section className="profile-section profile-section--articles" aria-labelledby="articles-title">
+        <div className="profile-section__heading">
+          <Layers3 size={20} aria-hidden="true" />
+          <div>
+            <p className="eyebrow">Writing</p>
+            <h2 id="articles-title">Technical Writing & Blogs.</h2>
+          </div>
+        </div>
+        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          {portfolioData.articles?.map((article) => (
+            <a 
+              key={article.title} 
+              href={article.url} 
+              target="_blank" 
+              rel="noreferrer"
+              className="article-link-card"
+              style={{ display: 'block', textDecoration: 'none', color: 'inherit', padding: '16px', border: '1px solid var(--line)', borderRadius: 'var(--radius-xs)', transition: 'background-color 0.2s' }}
+            >
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>{article.title}</h3>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: 'var(--muted)' }}>
+                <span>{article.platform}</span>
+                <span>{article.date}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="profile-next-step" aria-label="Explore project work or resume">
         <div>
           <p className="eyebrow">Next</p>
-          <h2>See the projects in more detail.</h2>
+          <h2>Explore my work or download my resume.</h2>
         </div>
-        <Link className="button button--primary" to="/work#featured-work">
-          View projects <AnimatedIcon animationData={arrowUpAnimation} loop size={20} invertColors className="rotate-45" />
-        </Link>
+        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "24px" }}>
+          <a className="button button--secondary" href={portfolioData.contact.resume} download>
+            Download Resume <AnimatedIcon animationData={arrowUpAnimation} loop size={20} className="rotate-90" />
+          </a>
+          <Link className="button button--primary" to="/work#featured-work">
+            View projects <AnimatedIcon animationData={arrowUpAnimation} loop size={20} invertColors className="rotate-45" />
+          </Link>
+        </div>
       </section>
     </div>
   );

@@ -83,13 +83,14 @@ export const portfolioData = {
   name: "Anurag Mishra",
   title: "Applied AI & Backend Engineer",
   summary:
-    "Product-focused Full-Stack Developer with experience in developer tooling and AI-integrated applications. Successfully built and deployed platforms reaching 21,700+ cumulative users and downloads across developer tooling and web applications. Proficient in scalable backend architecture, LLM-based orchestration, and machine learning pipelines with a focus on delivering high-impact, production-ready software.",
+    "Product-focused Full-Stack Developer with experience in developer tooling and AI-integrated applications. Proficient in scalable backend architecture, LLM-based orchestration, and machine learning pipelines with a focus on delivering high-impact, production-ready software.",
   contact: {
     phone: "+91 9302786886",
     email: "anuragmishrasnag06082004@gmail.com",
     linkedin: "https://www.linkedin.com/in/4nur4gmishra",
     github: "https://github.com/4nur4gmishr4",
     website: "https://anuragsterminalbay.vercel.app",
+    resume: "/Anurag_s_Resume.pdf",
   },
   metrics: [
     { value: "21,700+", label: "cumulative users and downloads" },
@@ -116,7 +117,7 @@ export const portfolioData = {
     {
       company: "Prominent Digitech Solution & Associates",
       role: "Full-Stack Development Intern",
-      location: "Remote",
+      location: "Indore (Remote from Jabalpur)",
       duration: "Dec 2024 - May 2026",
       highlights: [
         "Architected and deployed highly available Node.js backend services, owning feature delivery, relational schema design, and SQL optimization to support 500+ daily API requests with sub-second latency.",
@@ -146,6 +147,20 @@ export const portfolioData = {
   honors: [
     "Developer Tool Author: Architected and continuously maintained an open-source VS Code extension, driving a combined reach of 21,700+ cumulative users/downloads across software projects.",
     "Finalist (4th Place), Delhi Nexify Hackathon: Architected an AI-driven financial advisor prototype, competing against 100+ teams from across India.",
+  ],
+  articles: [
+    {
+      title: "Building FaultLine: Real-time AST Parsing for Intelligent Debugging",
+      url: "https://dev.to/4nur4gmishr4/building-faultline-real-time-ast-parsing-for-intelligent-debugging",
+      platform: "Dev.to",
+      date: "May 2026"
+    },
+    {
+      title: "Orchestrating Multiple LLMs with Pegasus: A Deep Dive into Autonomous Agents",
+      url: "https://medium.com/@4nur4gmishr4/orchestrating-multiple-llms-with-pegasus",
+      platform: "Medium",
+      date: "Jun 2026"
+    }
   ],
   links: [
     { label: "GitHub", href: "https://github.com/4nur4gmishr4" },
