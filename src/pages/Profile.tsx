@@ -65,7 +65,7 @@ const Profile = () => {
             <h2 id="experience-title">Where I've worked.</h2>
           </div>
         </div>
-        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
+        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
           {portfolioData.experience.map((experience) => (
             <div key={experience.company}>
               <div className="profile-role-line" style={{ marginBottom: "16px" }}>
@@ -92,7 +92,7 @@ const Profile = () => {
             <h2 id="education-title">Where I've studied.</h2>
           </div>
         </div>
-        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
+        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
           {portfolioData.education.map((education) => (
             <div key={education.institution}>
               <h3 style={{ marginBottom: "16px", fontSize: "16px", fontWeight: "600" }}>{education.institution}</h3>
@@ -174,7 +174,7 @@ const Profile = () => {
             <h2 id="articles-title">Technical Writing & Blogs.</h2>
           </div>
         </div>
-        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
           {portfolioData.articles?.map((article) => (
             <a 
               key={article.title} 
@@ -199,7 +199,7 @@ const Profile = () => {
           <p className="eyebrow">Next</p>
           <h2>Explore my work or download my resume.</h2>
         </div>
-        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "24px" }}>
+        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "12px" }}>
           <a className="button button--secondary" href={portfolioData.contact.resume} download>
             Download Resume <AnimatedIcon animationData={arrowDownAnimation} loop size={20} />
           </a>
