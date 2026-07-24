@@ -102,7 +102,7 @@ export const portfolioData = {
       institution: "Gyan Ganga Institute of Technology and Sciences",
       location: "Jabalpur, MP",
       degree: "B.Tech. in Computer Science & Engineering (AI & ML)",
-      credential: "CGPA: 7.94",
+      credential: "CGPA: 7.70",
       completion: "Graduated May 2026",
     },
     {

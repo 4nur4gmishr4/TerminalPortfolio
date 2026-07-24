@@ -58,7 +58,7 @@ const Profile = () => {
         <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
           {portfolioData.education.map((education) => (
             <div key={education.institution}>
-              <h3 style={{ marginBottom: "16px", fontSize: "16px", fontFamily: "JetBrains Mono, monospace" }}>{education.institution}</h3>
+              <h3 style={{ marginBottom: "16px", fontSize: "16px", fontWeight: "600" }}>{education.institution}</h3>
               <div className="profile-education-grid">
                 <p>{education.degree}</p>
                 <dl>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -44,7 +46,7 @@ body {
   overflow-x: hidden;
   background: var(--canvas);
   color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
@@ -53,7 +55,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, .brand__copy strong, .project-card__title, .hero-title {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   letter-spacing: -0.02em;
 }
 
@@ -192,7 +194,7 @@ textarea:focus-visible {
 .brand__copy span {
   overflow: hidden;
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -275,7 +277,7 @@ textarea:focus-visible {
   background: #f4f6f3;
   color: var(--muted);
   border-radius: var(--radius-xs);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
 }
 
@@ -451,7 +453,7 @@ textarea:focus-visible {
 .eyebrow {
   margin: 0 0 10px;
   color: var(--primary);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 11px;
   font-weight: 600;
   line-height: 1.4;
@@ -587,7 +589,7 @@ h3 {
   padding: 14px 16px;
   border-bottom: 1px solid var(--terminal-line);
   color: var(--terminal-muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 11px;
 }
 
@@ -700,7 +702,7 @@ h3 {
   padding: 12px 16px;
   border-bottom: 1px solid var(--line);
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
   line-height: 1.4;
   text-transform: uppercase;
@@ -740,7 +742,7 @@ h3 {
   flex: 0 0 auto;
   max-width: 175px;
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
   line-height: 1.35;
   text-align: right;
@@ -764,7 +766,7 @@ h3 {
 
 .project-card__evidence strong {
   color: var(--primary-dark);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 15px;
 }
 
@@ -784,7 +786,7 @@ h3 {
 
 .project-card__evidence li {
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
 }
 
@@ -854,7 +856,7 @@ h3 {
   gap: 8px 18px;
   margin-bottom: 20px;
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 11px;
   line-height: 1.5;
 }
@@ -934,7 +936,7 @@ h3 {
 
 .capability-row h3 {
   color: var(--primary-dark);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 13px;
   font-weight: 600;
   line-height: 1.5;
@@ -972,7 +974,7 @@ h3 {
 .command-console__output {
   min-height: 166px;
   padding: 20px;
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 13px;
   line-height: 1.6;
 }
@@ -1023,7 +1025,7 @@ h3 {
   border: 0;
   background: transparent;
   color: var(--terminal-text);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 13px;
 }
 
@@ -1066,7 +1068,7 @@ h3 {
   border-radius: var(--radius-xs);
   background: transparent;
   color: var(--terminal-muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 11px;
   transition: border-color 180ms ease-out, color 180ms ease-out, background-color 180ms ease-out;
 }
@@ -1140,7 +1142,7 @@ h3 {
   gap: 8px;
   flex: 0 0 auto;
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 11px;
   text-transform: uppercase;
 }
@@ -1231,7 +1233,7 @@ h3 {
   margin-left: 18px;
   content: "/";
   color: var(--line-strong);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-weight: 400;
 }
 
@@ -1267,7 +1269,7 @@ h3 {
 
 .profile-education-grid dt {
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
   text-transform: uppercase;
 }
@@ -1292,7 +1294,7 @@ h3 {
 
 .skills-matrix__row h3 {
   color: var(--primary-dark);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 13px;
   font-weight: 600;
   line-height: 1.5;
@@ -1314,7 +1316,7 @@ h3 {
   border-radius: var(--radius-xs);
   background: var(--surface);
   color: var(--ink-soft);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 11px;
   line-height: 1.45;
 }
@@ -1336,7 +1338,7 @@ h3 {
 
 .honors-list span {
   color: var(--accent);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 12px;
   font-weight: 600;
 }
@@ -1391,7 +1393,7 @@ h3 {
 .case-study-hero__category {
   margin-bottom: 28px;
   color: var(--primary-dark);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 13px;
   font-weight: 600;
 }
@@ -1416,7 +1418,7 @@ h3 {
 .case-study-facts span,
 .case-study-facts small {
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
   line-height: 1.35;
   text-transform: uppercase;
@@ -1467,7 +1469,7 @@ h3 {
 
 .case-evidence span {
   color: var(--accent);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 12px;
   font-weight: 600;
 }
@@ -1501,7 +1503,7 @@ h3 {
 
 .system-map__step > span {
   color: var(--primary-dark);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 12px;
   font-weight: 600;
 }
@@ -1687,7 +1689,7 @@ h3 {
 .contact-channels > a small {
   overflow: hidden;
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1804,7 +1806,7 @@ h3 {
 .site-footer p {
   margin: 0;
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
 }
 
@@ -1963,7 +1965,7 @@ h3 {
 .command-palette__results small {
   overflow: hidden;
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2004,7 +2006,7 @@ h3 {
   border-radius: var(--radius-xs);
   background: var(--surface);
   color: var(--primary-dark);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em;
   font-size: 12px;
 }
 

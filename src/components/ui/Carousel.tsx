@@ -77,7 +77,7 @@ function CarouselItemComponent({ item, index, itemWidth, round, trackItemOffset,
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
           <div className={`carousel-item-header ${round ? 'round' : ''}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             {item.icon && <span className="carousel-icon-container">{item.icon}</span>}
-            {item.year && <span style={{ fontSize: '12px', color: 'var(--ink-soft)', fontFamily: '"JetBrains Mono", monospace' }}>{item.year}</span>}
+            {item.year && <span style={{ fontSize: '12px', color: 'var(--ink-soft)', fontWeight: 500 }}>{item.year}</span>}
           </div>
           
           <div className="carousel-item-content" style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -105,7 +105,7 @@ function CarouselItemComponent({ item, index, itemWidth, round, trackItemOffset,
                   const slug = ICON_SLUG_MAP[tag.toLowerCase()];
                   const iconUrl = slug ? `https://cdn.simpleicons.org/${slug}/8a8a8a` : null;
                   return (
-                    <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', padding: '4px 8px', background: 'var(--terminal)', color: 'var(--terminal-text)', borderRadius: '4px', fontFamily: '"JetBrains Mono", monospace', whiteSpace: 'nowrap' }}>
+                    <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', padding: '4px 8px', background: 'var(--terminal)', color: 'var(--terminal-text)', borderRadius: '4px', fontWeight: 500, whiteSpace: 'nowrap' }}>
                       {iconUrl && <img src={iconUrl} alt="" style={{ width: '12px', height: '12px' }} />}
                       {tag}
                     </span>
