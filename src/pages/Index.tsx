@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
 import arrowUpAnimation from "@/assets/animations/arrow-up.json";
 import arrowDownAnimation from "@/assets/animations/arrow-down.json";
-import { BorderGlow } from "@/components/ui/BorderGlow";
+import { GradientCard } from "@/components/ui/GradientCard";
 import mailAnimation from "@/assets/animations/mail.json";
 import { CommandConsole } from "@/components/portfolio/CommandConsole";
 import { TypingReveal } from "@/components/portfolio/TypingReveal";
@@ -61,7 +61,7 @@ const Index = () => {
         </FadeIn>
 
         <FadeIn delay={0.3}>
-        <BorderGlow className="impact-ledger-glow">
+        <GradientCard className="impact-ledger-glow">
           <aside className="impact-ledger" aria-label="Impact at a glance">
             <div className="impact-ledger__header">
               <span>At a glance</span>
@@ -80,7 +80,7 @@ const Index = () => {
               <p>Web tools, backend services, and useful automation.</p>
             </div>
           </aside>
-        </BorderGlow>
+        </GradientCard>
         </FadeIn>
       </section>
 

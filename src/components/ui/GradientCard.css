@@ -1,0 +1,63 @@
+.gradient-card-wrapper {
+  position: relative;
+  border-radius: var(--radius-sm);
+  display: flex;
+  background: transparent;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--terminal-line); /* Default static border */
+  transition: border-color 0.4s ease;
+}
+
+.gradient-card-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 35%,
+    var(--primary) 45%,
+    var(--accent) 50%,
+    var(--primary) 55%,
+    transparent 65%,
+    transparent 100%
+  );
+  animation: rotate-gradient 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -2;
+}
+
+.gradient-card-wrapper:hover {
+  border-color: transparent;
+}
+
+.gradient-card-wrapper:hover::before {
+  opacity: 1;
+}
+
+.gradient-card-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--terminal);
+  border-radius: calc(var(--radius-sm) - 1px);
+  z-index: -1;
+}
+
+.gradient-card-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes rotate-gradient {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
