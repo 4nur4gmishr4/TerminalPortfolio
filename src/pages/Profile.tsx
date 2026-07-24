@@ -65,7 +65,7 @@ const Profile = () => {
             <h2 id="experience-title">Where I've worked.</h2>
           </div>
         </div>
-        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
           {portfolioData.experience.map((experience) => (
             <div key={experience.company}>
               <div className="profile-role-line" style={{ marginBottom: "16px" }}>
@@ -92,7 +92,7 @@ const Profile = () => {
             <h2 id="education-title">Where I've studied.</h2>
           </div>
         </div>
-        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <div className="profile-section__items" style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
           {portfolioData.education.map((education) => (
             <div key={education.institution}>
               <h3 style={{ marginBottom: "16px", fontSize: "16px", fontWeight: "600" }}>{education.institution}</h3>

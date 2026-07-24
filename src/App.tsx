@@ -8,10 +8,30 @@ import Profile from "./pages/Profile";
 import ProjectDetail from "./pages/ProjectDetail";
 import Projects from "./pages/Projects";
 
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
+
 const AppRoutes = () => {
   const location = useLocation();
   const state = location.state as { backgroundLocation?: Location };
   const backgroundLocation = state?.backgroundLocation;
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    return () => lenis.destroy();
+  }, []);
 
   return (
     <>
