@@ -1,70 +1,103 @@
-import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Command, Search } from "lucide-react";
+import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
+import githubAnimation from "@/assets/animations/github.json";
+import menuAnimation from "@/assets/animations/menu-v3.json";
+import { useEffect, useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { portfolioData } from "@/types/portfolio";
+import { siteRoutes } from "@/lib/routes";
 
 interface TopAppBarProps {
-  onMenuToggle: () => void;
+  onCommandOpen: () => void;
 }
 
-export const TopAppBar = ({ onMenuToggle }: TopAppBarProps) => {
-  const location = useLocation();
-  const [time, setTime] = useState("");
+export const TopAppBar = ({ onCommandOpen }: TopAppBarProps) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTime(
-        now.toLocaleTimeString("en-US", {
-          hour12: false,
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        })
-      );
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
     };
-    updateTime();
-    const timer = setInterval(updateTime, 1000);
-    return () => clearInterval(timer);
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
 
-  const isActive = (path: string) => location.pathname === path;
-
-  const navLinkClass = (path: string) => {
-    if (isActive(path)) {
-      return "h-full flex items-center text-primary font-bold border-b-2 border-primary pb-1 px-2 mt-[2px]";
-    }
-    return "h-full flex items-center text-on-surface-variant/60 hover:text-primary hover:bg-white/5 transition-colors px-2";
-  };
+  const closeMobileMenu = () => setMobileOpen(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter bg-surface/70 backdrop-blur-md text-primary-fixed-dim font-data-mono text-data-mono tracking-tight h-14 border-b border-white/10 shadow-[0_4px_40px_rgba(0,0,0,0.15)]">
-      <div className="flex items-center gap-lg h-full">
-        {/* Mobile hamburger */}
-        <button
-          onClick={onMenuToggle}
-          className="md:hidden text-on-surface-variant/60 hover:text-primary transition-colors p-1"
-          aria-label="Toggle menu"
-        >
-          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>menu</span>
-        </button>
+    <header className="site-header">
+      <div className="site-header__inner">
+        <Link to="/" className="brand" aria-label="Anurag Mishra portfolio home" onClick={closeMobileMenu}>
+          <span className="brand__mark">AM</span>
+          <span className="brand__copy">
+            <strong>Anurag Mishra</strong>
+            <span>Software developer</span>
+          </span>
+        </Link>
 
-        {/* Logo badge */}
-        <div className="font-label-caps text-label-caps text-primary tracking-widest bg-primary/10 px-2 py-1 border border-primary/20 flex items-center">
-          TERMINALBAY
-        </div>
+        <nav className="site-nav" aria-label="Primary navigation">
+          {siteRoutes.filter(route => route.path).map((item) => (
+            <NavLink
+              end={item.end}
+              className={({ isActive }) => (isActive ? "site-nav__link is-active" : "site-nav__link")}
+              key={item.path}
+              to={item.path!}
+            >
+              {item.shortLabel}
+            </NavLink>
+          ))}
+        </nav>
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex h-full items-center gap-md">
-          <Link to="/" className={navLinkClass("/")}>TERMINAL</Link>
-          <Link to="/projects" className={navLinkClass("/projects")}>PROJECTS</Link>
-          <Link to="/contact" className={navLinkClass("/contact")}>CONTACT</Link>
+        <div className="site-header__actions">
+          <button className="header-command" type="button" onClick={onCommandOpen} aria-label="Open quick links">
+            <Search size={17} aria-hidden="true" />
+            <span>Quick links</span>
+            <kbd>Ctrl K</kbd>
+          </button>
+          <a className="icon-button" href={portfolioData.contact.github} target="_blank" rel="noreferrer" aria-label="Open Anurag Mishra's GitHub profile">
+            <AnimatedIcon animationData={githubAnimation} loop speed={0.5} size={22} />
+          </a>
+          <button
+            aria-controls="mobile-navigation"
+            aria-expanded={mobileOpen}
+            className="mobile-menu-button"
+            type="button"
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            <AnimatedIcon animationData={menuAnimation} isToggled={mobileOpen} size={26} />
+            <span className="sr-only">{mobileOpen ? "Close navigation" : "Open navigation"}</span>
+          </button>
         </div>
       </div>
 
-      {/* Clock — desktop only */}
-      <div className="hidden sm:flex items-center gap-xs font-data-mono text-label-caps text-on-surface-variant/60">
-        <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 0" }}>schedule</span>
-        <span>{time}</span>
-      </div>
-    </nav>
+      {mobileOpen && (
+        <nav id="mobile-navigation" className="mobile-navigation" aria-label="Mobile navigation">
+          <div className="mobile-navigation__inner">
+            {siteRoutes.filter(route => route.path).map((item) => (
+              <NavLink
+                end={item.end}
+                className={({ isActive }) => (isActive ? "mobile-navigation__link is-active" : "mobile-navigation__link")}
+                key={item.path}
+                to={item.path!}
+                onClick={closeMobileMenu}
+              >
+                {item.shortLabel}
+              </NavLink>
+            ))}
+            <button
+              className="mobile-navigation__command"
+              type="button"
+              onClick={() => {
+                closeMobileMenu();
+                onCommandOpen();
+              }}
+            >
+              <Command size={17} aria-hidden="true" />
+              Open quick links
+            </button>
+          </div>
+        </nav>
+      )}
+    </header>
   );
 };

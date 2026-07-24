@@ -1,85 +1,92 @@
-import { motion } from "framer-motion";
-import { portfolioData } from "@/types/portfolio";
+import { SlidersHorizontal } from "lucide-react";
+import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
+import arrowDownAnimation from "@/assets/animations/arrow-down.json";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { ProjectCard } from "@/components/portfolio/ProjectCard";
+import { getProjectsByGroup, projectGroups, type ProjectGroupId } from "@/types/portfolio";
+import { formatIndex } from "@/lib/utils";
+
+type WorkFilter = "all" | ProjectGroupId;
+
+const isWorkFilter = (value: string | null): value is WorkFilter =>
+  value === "all" || value === "featured" || value === "client" || value === "engineering";
 
 const Projects = () => {
-  return (
-    <div className="p-gutter lg:p-lg h-full overflow-y-auto">
-      <div className="max-w-[1000px] mx-auto relative z-10 space-y-lg">
-        
-        {/* Header */}
-        <div>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-sm mb-xs"
-          >
-            <span className="material-symbols-outlined text-primary text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>folder_open</span>
-            <h1 className="text-display-sm text-on-surface">Projects</h1>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="text-on-surface-variant font-data-mono text-data-mono max-w-2xl"
-          >
-            A collection of my work, ranging from CLI tools to full-stack applications.
-          </motion.p>
-        </div>
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const queryFilter = searchParams.get("group");
+  const activeFilter: WorkFilter = isWorkFilter(queryFilter) ? queryFilter : "all";
 
-        {/* Project Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {portfolioData.projects.map((project, idx) => (
-            <motion.div
-              key={project.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * idx }}
-              className="glass-panel p-6 flex flex-col group hover:border-primary/50 transition-colors"
+  const setFilter = (filter: WorkFilter) => {
+    if (filter === "all") {
+      navigate("/work#work-list");
+      return;
+    }
+    navigate(`/work?group=${filter}#${filter}-work`);
+  };
+
+  const visibleGroups = activeFilter === "all" ? projectGroups : projectGroups.filter((group) => group.id === activeFilter);
+
+  return (
+    <div className="page-shell page-shell--work">
+      <section className="page-intro" aria-labelledby="work-title">
+        <p className="eyebrow">Work / 11 projects</p>
+        <h1 id="work-title">Work I have built.</h1>
+        <p>
+          Start with my featured work, then see client work and other projects across web, mobile, data, and connected devices.
+        </p>
+      </section>
+
+      <section className="work-filter" aria-label="Filter work">
+        <div className="work-filter__label">
+          <SlidersHorizontal size={17} aria-hidden="true" />
+          <span>Show</span>
+        </div>
+        <div className="filter-controls" role="group" aria-label="Project group">
+          <button className={activeFilter === "all" ? "is-active" : ""} type="button" onClick={() => setFilter("all")} aria-pressed={activeFilter === "all"}>
+            All projects
+          </button>
+          {projectGroups.map((group) => (
+            <button
+              className={activeFilter === group.id ? "is-active" : ""}
+              key={group.id}
+              type="button"
+              onClick={() => setFilter(group.id)}
+              aria-pressed={activeFilter === group.id}
             >
-              <div className="flex justify-between items-start mb-4">
-                <h2 className="text-title-lg text-primary font-bold">{project.name}</h2>
-                <div className="flex gap-2">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-on-surface-variant hover:text-primary transition-colors"
-                      title="View GitHub Repository"
-                    >
-                      <span className="material-symbols-outlined text-[20px]">code</span>
-                    </a>
-                  )}
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-on-surface-variant hover:text-primary transition-colors"
-                      title="View Live Project"
-                    >
-                      <span className="material-symbols-outlined text-[20px]">open_in_new</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-              
-              <p className="text-on-surface-variant mb-6 flex-grow">{project.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 bg-white/5 border border-white/10 rounded-sm text-label-sm font-data-mono text-on-surface-variant/80"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+              {group.title}
+            </button>
           ))}
         </div>
-        
+      </section>
+
+      <div className="work-groups" id="work-list">
+        {visibleGroups.map((group) => {
+          const projects = getProjectsByGroup(group.id);
+          const indexOffset = projectGroups.slice(0, projectGroups.findIndex((candidate) => candidate.id === group.id)).reduce((total, candidate) => total + getProjectsByGroup(candidate.id).length, 0);
+
+          return (
+            <section className="work-group" id={`${group.id}-work`} key={group.id} aria-labelledby={`${group.id}-projects-title`}>
+              <div className="work-group__heading">
+                <div>
+                  <p className="eyebrow">{formatIndex(indexOffset + 1)} - {formatIndex(indexOffset + projects.length)}</p>
+                  <h2 id={`${group.id}-projects-title`}>{group.title}</h2>
+                </div>
+                <p>{group.description}</p>
+              </div>
+              <div className="project-grid">
+                {projects.map((project, index) => (
+                  <ProjectCard key={project.slug} project={project} index={index + indexOffset + 1} />
+                ))}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      <div className="work-footer-note">
+        <AnimatedIcon animationData={arrowDownAnimation} loop size={20} className="-rotate-45" />
+        <p>Open a project to see what it does, how it works, the tools used, and the available links.</p>
       </div>
     </div>
   );
