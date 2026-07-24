@@ -9,6 +9,7 @@ import { TypingReveal } from "@/components/portfolio/TypingReveal";
 import Carousel from "@/components/ui/Carousel";
 import { getProjectsByGroup, portfolioData, type Project } from "@/types/portfolio";
 import nullSecretLogo from "@/assets/null-secrets-logo.json";
+import { FadeIn } from "@/components/ui/FadeIn";
 
 const featuredProjects = getProjectsByGroup("featured");
 const headline = "Useful software, built carefully.";
@@ -36,6 +37,7 @@ const Index = () => {
   return (
     <div className="page-shell home-page-shell">
       <section className="home-hero" aria-labelledby="home-title">
+        <FadeIn delay={0.1}>
         <div className="home-hero__copy">
           <p className="eyebrow">Applied AI & Backend Engineer • India</p>
           <h1 id="home-title">
@@ -55,7 +57,9 @@ const Index = () => {
             </a>
           </div>
         </div>
+        </FadeIn>
 
+        <FadeIn delay={0.3}>
         <aside className="impact-ledger" aria-label="Impact at a glance">
           <div className="impact-ledger__header">
             <span>At a glance</span>
@@ -74,8 +78,10 @@ const Index = () => {
             <p>Web tools, backend services, and useful automation.</p>
           </div>
         </aside>
+        </FadeIn>
       </section>
 
+      <FadeIn delay={0.1}>
       <section className="content-section" aria-labelledby="selected-work-title">
         <div className="section-heading section-heading--split">
           <div>
@@ -112,7 +118,9 @@ const Index = () => {
           />
         </div>
       </section>
+      </FadeIn>
 
+      <FadeIn delay={0.2}>
       <section className="content-section console-section" aria-labelledby="console-title">
         <div className="section-heading section-heading--split">
           <div>
@@ -123,7 +131,9 @@ const Index = () => {
         </div>
         <CommandConsole />
       </section>
+      </FadeIn>
 
+      <FadeIn delay={0.2}>
       <section className="contact-band" aria-labelledby="contact-band-title">
         <div>
           <p className="eyebrow">Want to work together?</p>
@@ -135,6 +145,7 @@ const Index = () => {
           <AnimatedIcon animationData={arrowUpAnimation} loop size={24} className="rotate-45" />
         </a>
       </section>
+      </FadeIn>
     </div>
   );
 };

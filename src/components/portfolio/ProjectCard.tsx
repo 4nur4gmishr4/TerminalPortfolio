@@ -4,6 +4,7 @@ import arrowUpAnimation from "@/assets/animations/arrow-up.json";
 import { Link, useLocation } from "react-router-dom";
 import type { Project } from "@/types/portfolio";
 import { formatIndex } from "@/lib/utils";
+import { FadeIn } from "@/components/ui/FadeIn";
 
 interface ProjectCardProps {
   project: Project;
@@ -15,6 +16,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const indexLabel = formatIndex(index);
 
   return (
+    <FadeIn delay={0.1}>
     <article className="project-card">
       <div className="project-card__meta">
         <span>{indexLabel}</span>
@@ -64,5 +66,6 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
         </Link>
       </div>
     </article>
+    </FadeIn>
   );
 };

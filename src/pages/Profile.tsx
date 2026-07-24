@@ -7,6 +7,7 @@ import arrowUpAnimation from "@/assets/animations/arrow-up.json";
 import arrowDownAnimation from "@/assets/animations/arrow-down.json";
 import { portfolioData } from "@/types/portfolio";
 import { formatIndex, generateId } from "@/lib/utils";
+import { FadeIn } from "@/components/ui/FadeIn";
 
 
 const SKILL_SLUG_MAP: Record<string, string> = {
@@ -57,6 +58,7 @@ const Profile = () => {
         <p>{portfolioData.summary}</p>
       </section>
 
+      <FadeIn delay={0.1}>
       <section className="profile-section profile-section--experience" aria-labelledby="experience-title">
         <div className="profile-section__heading">
           <AnimatedIcon animationData={folderAnimation} loop speed={0.5} size={26} />
@@ -83,7 +85,9 @@ const Profile = () => {
           ))}
         </div>
       </section>
+      </FadeIn>
 
+      <FadeIn delay={0.1}>
       <section className="profile-section profile-section--education" aria-labelledby="education-title">
         <div className="profile-section__heading">
           <GraduationCap size={20} aria-hidden="true" />
@@ -119,7 +123,9 @@ const Profile = () => {
           ))}
         </div>
       </section>
+      </FadeIn>
 
+      <FadeIn delay={0.1}>
       <section className="profile-section profile-section--skills" aria-labelledby="skills-title">
         <div className="profile-section__heading">
           <Layers3 size={20} aria-hidden="true" />
@@ -147,7 +153,9 @@ const Profile = () => {
           ))}
         </div>
       </section>
+      </FadeIn>
 
+      <FadeIn delay={0.1}>
       <section className="profile-section profile-section--honors" aria-labelledby="honors-title">
         <div className="profile-section__heading">
           <AnimatedIcon animationData={starAnimation} loop speed={0.5} size={26} />
@@ -165,7 +173,9 @@ const Profile = () => {
           ))}
         </ol>
       </section>
+      </FadeIn>
 
+      <FadeIn delay={0.2}>
       <section className="profile-next-step" aria-label="Explore project work or resume">
         <div>
           <p className="eyebrow">Next</p>
@@ -180,6 +190,7 @@ const Profile = () => {
           </Link>
         </div>
       </section>
+      </FadeIn>
     </div>
   );
 };
