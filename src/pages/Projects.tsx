@@ -11,7 +11,6 @@ type WorkFilter = "all" | ProjectGroupId;
 const isWorkFilter = (value: string | null): value is WorkFilter =>
   value === "all" || value === "featured" || value === "client" || value === "engineering";
 
-import { BackButton } from "@/components/ui/BackButton";
 
 const Projects = () => {
   const [searchParams] = useSearchParams();
@@ -31,7 +30,6 @@ const Projects = () => {
 
   return (
     <div className="page-shell page-shell--work">
-      <BackButton />
       <section className="page-intro" aria-labelledby="work-title">
         <p className="eyebrow">Work / {projects.length} projects</p>
         <h1 id="work-title">Work I have built.</h1>

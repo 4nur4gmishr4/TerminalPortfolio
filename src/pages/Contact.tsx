@@ -6,13 +6,11 @@ import githubAnimation from "@/assets/animations/github.json";
 import linkedinAnimation from "@/assets/animations/linkedin.json";
 import { portfolioData } from "@/types/portfolio";
 
-import { BackButton } from "@/components/ui/BackButton";
 
 const Contact = () => {
 
   return (
     <div className="page-shell page-shell--contact">
-      <BackButton />
       <section className="page-intro" aria-labelledby="contact-title">
         <p className="eyebrow">Contact</p>
         <h1 id="contact-title">Let's talk.</h1>
