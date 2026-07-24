@@ -64,11 +64,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: url('/cursor-default.svg') 6 3, auto;
-}
-
-a, button, input, [role="button"], label, select, summary, .magnetic, .skill-item {
-  cursor: url('/cursor-pointer.svg') 14 4, pointer !important;
 }
 
 h1, h2, h3, h4, h5, h6, .brand__copy strong, .project-card__title, .hero-title {

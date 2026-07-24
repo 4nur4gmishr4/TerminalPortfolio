@@ -1,6 +1,6 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Points } from '@react-three/drei';
+
 import * as THREE from 'three';
 
 function ParticleField() {
@@ -30,7 +30,15 @@ function ParticleField() {
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
+      <points ref={ref} frustumCulled={false}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={sphere.length / 3}
+            array={sphere}
+            itemSize={3}
+          />
+        </bufferGeometry>
         <pointsMaterial
           transparent
           color="#0a6157"
@@ -40,7 +48,7 @@ function ParticleField() {
           opacity={0.6}
           blending={THREE.AdditiveBlending}
         />
-      </Points>
+      </points>
     </group>
   );
 }
