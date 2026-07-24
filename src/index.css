@@ -371,14 +371,13 @@ textarea:focus-visible {
 
 .mobile-navigation__inner {
   width: min(calc(100% - (var(--gutter) * 2)), var(--page-width));
-  margin: 0 auto;
-  padding: 12px 0;
+  margin: 24px auto 0 auto;
+  padding: 0;
   display: grid;
   gap: 0;
   background: var(--surface);
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
-  margin-top: 12px;
 }
 
 .mobile-navigation__grabber-container {
