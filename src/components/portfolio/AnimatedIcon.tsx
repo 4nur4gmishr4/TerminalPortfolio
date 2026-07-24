@@ -5,7 +5,7 @@ interface AnimatedIconProps {
   animationData: unknown;
   loop?: boolean;
   hover?: boolean;
-  size?: number;
+  size?: number | string;
   className?: string;
   onClick?: () => void;
   isToggled?: boolean;

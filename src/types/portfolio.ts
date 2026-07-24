@@ -46,6 +46,7 @@ export interface Project {
   role: string;
   client?: string;
   status?: string;
+  logo?: string;
   metric?: Metric;
   impact: string[];
   features: string[];
@@ -162,6 +163,7 @@ export const projects: Project[] = [
     overview:
       "An intelligent VS Code extension that intercepts failed terminal commands, diagnosing errors and suggesting actionable fixes in real-time.",
     role: "Built and maintained by me",
+    logo: "/faultline-logo.png",
     metric: { value: "20,200+", label: "downloads" },
     impact: [
       "Engineered a developer tool reaching 20,200+ downloads that combines custom audio alerts with Abstract Syntax Tree (AST) parsing for real-time error detection.",

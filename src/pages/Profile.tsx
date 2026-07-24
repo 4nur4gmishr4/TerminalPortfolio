@@ -7,10 +7,13 @@ import arrowUpAnimation from "@/assets/animations/arrow-up.json";
 import { portfolioData } from "@/types/portfolio";
 import { formatIndex, generateId } from "@/lib/utils";
 
+import { BackButton } from "@/components/ui/BackButton";
+
 const Profile = () => {
 
   return (
     <div className="page-shell page-shell--profile">
+      <BackButton />
       <section className="page-intro" aria-labelledby="profile-title">
         <p className="eyebrow">About me</p>
         <h1 id="profile-title">The experience behind my work.</h1>

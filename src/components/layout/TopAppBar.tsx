@@ -3,10 +3,11 @@ import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
 import githubAnimation from "@/assets/animations/github.json";
 import linkedinAnimation from "@/assets/animations/linkedin.json";
 import menuAnimation from "@/assets/animations/menu-v3.json";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { portfolioData } from "@/types/portfolio";
 import { siteRoutes } from "@/lib/routes";
+import { PremiumNav } from "@/components/ui/PremiumNav";
 
 interface TopAppBarProps {
   onCommandOpen: () => void;
@@ -14,26 +15,47 @@ interface TopAppBarProps {
 
 export const TopAppBar = ({ onCommandOpen }: TopAppBarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [startY, setStartY] = useState<number | null>(null);
+  const startYRef = useRef<number | null>(null);
+  const dragYRef = useRef(0);
+  const navRef = useRef<HTMLElement>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    setStartY(e.touches[0].clientY);
+    startYRef.current = e.touches[0].clientY;
+    if (navRef.current) {
+      navRef.current.classList.add('is-dragging');
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (startY === null) return;
+    if (startYRef.current === null) return;
     const currentY = e.touches[0].clientY;
-    const diff = startY - currentY;
+    const diff = startYRef.current - currentY;
     
-    // Swipe up by 40px triggers close
-    if (diff > 40) {
-      setMobileOpen(false);
-      setStartY(null);
+    // Only allow dragging upwards (diff > 0)
+    if (diff > 0) {
+      // Apply spring resistance (0.85 multiplier)
+      dragYRef.current = diff * 0.85;
+      
+      // Direct DOM mutation for absolute 60fps peak performance (bypasses React render cycle)
+      if (navRef.current) {
+        navRef.current.style.setProperty('--drag-y', `-${dragYRef.current}px`);
+      }
     }
   };
 
   const handleTouchEnd = () => {
-    setStartY(null);
+    if (navRef.current) {
+      navRef.current.classList.remove('is-dragging');
+      // Reset DOM inline style so CSS transitions take over smoothly
+      navRef.current.style.removeProperty('--drag-y');
+    }
+    
+    if (dragYRef.current > 60) {
+      setMobileOpen(false);
+    }
+    
+    startYRef.current = null;
+    dragYRef.current = 0;
   };
 
   useEffect(() => {
@@ -61,25 +83,21 @@ export const TopAppBar = ({ onCommandOpen }: TopAppBarProps) => {
     <header className="site-header">
       <div className="site-header__inner">
         <Link to="/" className="brand" aria-label="Anurag Mishra portfolio home" onClick={closeMobileMenu}>
-          <span className="brand__mark">AM</span>
+          <img src="/favicon.svg" alt="AM" className="brand__mark" />
           <span className="brand__copy">
             <strong>Anurag Mishra</strong>
             <span>Software developer</span>
           </span>
         </Link>
 
-        <nav className="site-nav" aria-label="Primary navigation">
-          {siteRoutes.filter(route => route.path).map((item) => (
-            <NavLink
-              end={item.end}
-              className={({ isActive }) => (isActive ? "site-nav__link is-active" : "site-nav__link")}
-              key={item.path}
-              to={item.path!}
-            >
-              {item.shortLabel}
-            </NavLink>
-          ))}
-        </nav>
+        <div className="site-nav-container">
+          <PremiumNav
+            items={siteRoutes.filter(route => route.path).map((item) => ({
+              label: item.shortLabel,
+              href: item.path!
+            }))}
+          />
+        </div>
 
         <div className="site-header__actions">
           <button className="header-command" type="button" onClick={onCommandOpen} aria-label="Open quick links">
@@ -114,6 +132,7 @@ export const TopAppBar = ({ onCommandOpen }: TopAppBarProps) => {
 
       <nav 
         id="mobile-navigation" 
+        ref={navRef}
         className={`mobile-navigation ${mobileOpen ? 'is-open' : ''}`} 
         aria-label="Mobile navigation"
         onTouchStart={handleTouchStart}

@@ -1,7 +1,7 @@
 import { LockKeyhole } from "lucide-react";
 import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
 import arrowUpAnimation from "@/assets/animations/arrow-up.json";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import type { Project } from "@/types/portfolio";
 import { formatIndex } from "@/lib/utils";
 
@@ -11,6 +11,7 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = ({ project, index }: ProjectCardProps) => {
+  const location = useLocation();
   const indexLabel = formatIndex(index);
 
   return (
@@ -52,7 +53,12 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             ))}
           </ul>
         </div>
-        <Link className="project-card__action" to={`/projects/${project.slug}`} aria-label={`View ${project.name} project`}>
+        <Link 
+          className="project-card__action" 
+          to={`/projects/${project.slug}`} 
+          state={{ backgroundLocation: location }}
+          aria-label={`View ${project.name} project`}
+        >
           <span>View project</span>
           <AnimatedIcon animationData={arrowUpAnimation} loop size={18} className="rotate-45" />
         </Link>

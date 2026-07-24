@@ -1,11 +1,13 @@
-import { Check, ExternalLink, Github, Layers3, Store } from "lucide-react";
+import { ArrowRight, Check, ExternalLink, Github, Layers3, Store, X } from "lucide-react";
 import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
 import arrowUpAnimation from "@/assets/animations/arrow-up.json";
 import chevronRightAnimation from "@/assets/animations/chevron-right.json";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { getProject, projectGroups, projects } from "@/types/portfolio";
 import NotFound from "./NotFound";
 import { formatIndex } from "@/lib/utils";
+import { useEffect } from "react";
+import { BackButton } from "@/components/ui/BackButton";
 
 const linkIcon = {
   github: Github,
@@ -13,9 +15,20 @@ const linkIcon = {
   live: ExternalLink,
 };
 
-const ProjectDetail = () => {
+export const ProjectDetail = ({ isModal }: { isModal?: boolean }) => {
   const { slug } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const project = slug ? getProject(slug) : undefined;
+
+  useEffect(() => {
+    if (isModal) {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, [isModal]);
 
   if (!project) return <NotFound />;
 
@@ -23,12 +36,9 @@ const ProjectDetail = () => {
   const projectIndex = projects.findIndex((candidate) => candidate.slug === project.slug);
   const nextProject = projects[projectIndex + 1] ?? projects[0];
 
-  return (
+  const content = (
     <div className="page-shell page-shell--case-study">
-      <Link className="back-link" to={`/work#${project.group}-work`}>
-        <AnimatedIcon animationData={chevronRightAnimation} loop size={20} className="rotate-180" />
-        Back to projects
-      </Link>
+      <BackButton />
 
       <section className="case-study-hero" aria-labelledby="case-study-title">
         <div className="case-study-hero__copy">
@@ -145,13 +155,41 @@ const ProjectDetail = () => {
 
       <section className="case-study-next" aria-label="Next project">
         <p className="eyebrow">Next project</p>
-        <Link to={`/projects/${nextProject.slug}`}>
+        <Link to={`/projects/${nextProject.slug}`} state={isModal ? location.state : undefined}>
           <span>{nextProject.name}</span>
           <AnimatedIcon animationData={chevronRightAnimation} loop size={24} />
         </Link>
       </section>
     </div>
   );
+
+  if (isModal) {
+    return (
+      <div 
+        className="bottom-sheet-overlay" 
+        onClick={() => navigate(-1)}
+        role="dialog"
+        aria-modal="true"
+      >
+        <div 
+          className="bottom-sheet-content" 
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="bottom-sheet-header">
+            <div className="bottom-sheet-grabber" />
+            <button className="bottom-sheet-close" onClick={() => navigate(-1)} aria-label="Close project">
+              <X size={20} />
+            </button>
+          </div>
+          <div className="bottom-sheet-body">
+            {content}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return content;
 };
 
 export default ProjectDetail;

@@ -1,19 +1,40 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
 import arrowUpAnimation from "@/assets/animations/arrow-up.json";
 import arrowDownAnimation from "@/assets/animations/arrow-down.json";
 import mailAnimation from "@/assets/animations/mail.json";
 import { CommandConsole } from "@/components/portfolio/CommandConsole";
-import { ProjectCard } from "@/components/portfolio/ProjectCard";
 import { TypingReveal } from "@/components/portfolio/TypingReveal";
-import { getProjectsByGroup, portfolioData } from "@/types/portfolio";
+import Carousel from "@/components/ui/Carousel";
+import { getProjectsByGroup, portfolioData, type Project } from "@/types/portfolio";
+import nullSecretLogo from "@/assets/null-secrets-logo.json";
 
 const featuredProjects = getProjectsByGroup("featured");
 const headline = "Useful software, built carefully.";
 
 const Index = () => {
+  const [carouselWidth, setCarouselWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth - 48 : 1200
+  );
+
+  useEffect(() => {
+    let timeout: number;
+    const handleResize = () => {
+      clearTimeout(timeout);
+      timeout = window.setTimeout(() => {
+        setCarouselWidth(window.innerWidth - 48);
+      }, 150);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="page-shell">
+    <div className="page-shell home-page-shell">
       <section className="home-hero" aria-labelledby="home-title">
         <div className="home-hero__copy">
           <p className="eyebrow">Applied AI & Backend Engineer • India</p>
@@ -62,10 +83,30 @@ const Index = () => {
             View all projects <AnimatedIcon animationData={arrowUpAnimation} loop size={18} className="rotate-45" />
           </Link>
         </div>
-        <div className="project-grid">
-          {featuredProjects.map((project, index) => (
-            <ProjectCard key={project.slug} project={project} index={index + 1} />
-          ))}
+        <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <Carousel
+            items={featuredProjects.map((project: Project) => ({
+              title: project.name,
+              description: project.overview,
+              id: project.slug,
+              tags: project.stack,
+              role: project.role,
+              logoUrl: project.logo,
+              logoNode: project.slug === 'null-secret' ? <AnimatedIcon animationData={nullSecretLogo} loop size="100%" /> : undefined,
+              client: project.client,
+              status: project.status,
+              metric: project.metric,
+              impact: project.impact?.slice(0, 2),
+              category: project.category,
+              arrowIcon: <AnimatedIcon animationData={arrowUpAnimation} loop size={16} className="rotate-45" />
+            }))}
+            baseWidth={carouselWidth}
+            autoplay={true}
+            autoplayDelay={3000}
+            pauseOnHover={true}
+            loop={true}
+            round={false}
+          />
         </div>
       </section>
 

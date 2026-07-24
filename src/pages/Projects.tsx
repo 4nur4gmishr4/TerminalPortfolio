@@ -3,13 +3,15 @@ import { AnimatedIcon } from "@/components/portfolio/AnimatedIcon";
 import arrowDownAnimation from "@/assets/animations/arrow-down.json";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ProjectCard } from "@/components/portfolio/ProjectCard";
-import { getProjectsByGroup, projectGroups, type ProjectGroupId } from "@/types/portfolio";
+import { getProjectsByGroup, projectGroups, projects, type ProjectGroupId } from "@/types/portfolio";
 import { formatIndex } from "@/lib/utils";
 
 type WorkFilter = "all" | ProjectGroupId;
 
 const isWorkFilter = (value: string | null): value is WorkFilter =>
   value === "all" || value === "featured" || value === "client" || value === "engineering";
+
+import { BackButton } from "@/components/ui/BackButton";
 
 const Projects = () => {
   const [searchParams] = useSearchParams();
@@ -29,8 +31,9 @@ const Projects = () => {
 
   return (
     <div className="page-shell page-shell--work">
+      <BackButton />
       <section className="page-intro" aria-labelledby="work-title">
-        <p className="eyebrow">Work / 11 projects</p>
+        <p className="eyebrow">Work / {projects.length} projects</p>
         <h1 id="work-title">Work I have built.</h1>
         <p>
           Start with my featured work, then see client work and other projects across web, mobile, data, and connected devices.
