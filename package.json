@@ -8,8 +8,8 @@
 		"lint": "eslint ."
 	},
 	"dependencies": {
-		"@react-three/drei": "^10.7.7",
-		"@react-three/fiber": "^9.6.1",
+		"@react-three/drei": "^9.114.0",
+		"@react-three/fiber": "^8.17.14",
 		"gh-pages": "^6.3.0",
 		"lottie-react": "^2.4.1",
 		"lucide-react": "^0.462.0",
