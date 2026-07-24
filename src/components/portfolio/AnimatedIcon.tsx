@@ -11,6 +11,7 @@ interface AnimatedIconProps {
   isToggled?: boolean;
   invertColors?: boolean;
   speed?: number;
+  boomerang?: boolean;
 }
 
 export const AnimatedIcon = ({ 
@@ -22,9 +23,11 @@ export const AnimatedIcon = ({
   speed = 1,
   size = 24, 
   className = "",
-  onClick
+  onClick,
+  boomerang = false
 }: AnimatedIconProps) => {
   const lottieRef = useRef<any>(null);
+  const currentDirection = useRef<1 | -1>(1);
 
   // Set playback speed
   useEffect(() => {
@@ -55,6 +58,14 @@ export const AnimatedIcon = ({
     }
   };
 
+  const handleComplete = () => {
+    if (boomerang && lottieRef.current) {
+      currentDirection.current = currentDirection.current === 1 ? -1 : 1;
+      lottieRef.current.setDirection(currentDirection.current);
+      lottieRef.current.play();
+    }
+  };
+
   return (
     <div 
       className={`animated-icon-wrapper ${className}`}
@@ -74,8 +85,9 @@ export const AnimatedIcon = ({
       <Lottie 
         lottieRef={lottieRef}
         animationData={animationData} 
-        loop={loop}
-        autoplay={isToggled !== undefined ? false : (loop || !hover)} 
+        loop={boomerang ? false : loop}
+        autoplay={isToggled !== undefined ? false : (loop || boomerang || !hover)} 
+        onComplete={handleComplete}
         style={{ width: '100%', height: '100%' }}
       />
     </div>

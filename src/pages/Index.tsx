@@ -101,7 +101,7 @@ const Index = () => {
               tags: project.stack,
               role: project.role,
               logoUrl: project.logo,
-              logoNode: project.slug === 'null-secret' ? <AnimatedIcon animationData={nullSecretLogo} loop size="100%" /> : undefined,
+              logoNode: project.slug === 'null-secret' ? <AnimatedIcon animationData={nullSecretLogo} boomerang size="100%" /> : undefined,
               client: project.client,
               status: project.status,
               metric: project.metric,
@@ -140,7 +140,7 @@ const Index = () => {
           <h2 id="contact-band-title">Let's talk about your next project.</h2>
         </div>
         <a className="contact-band__email" href={`mailto:${portfolioData.contact.email}`}>
-          <AnimatedIcon animationData={mailAnimation} loop speed={0.5} size={24} />
+          <AnimatedIcon animationData={mailAnimation} boomerang speed={0.5} size={24} />
           <span>{portfolioData.contact.email}</span>
           <AnimatedIcon animationData={arrowUpAnimation} loop size={24} className="rotate-45" />
         </a>

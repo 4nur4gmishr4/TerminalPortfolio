@@ -61,7 +61,7 @@ const Profile = () => {
       <FadeIn delay={0.1}>
       <section className="profile-section profile-section--experience" aria-labelledby="experience-title">
         <div className="profile-section__heading">
-          <AnimatedIcon animationData={folderAnimation} loop speed={0.5} size={26} />
+          <AnimatedIcon animationData={folderAnimation} boomerang speed={0.5} size={26} />
           <div>
             <p className="eyebrow">Experience</p>
             <h2 id="experience-title">Where I've worked.</h2>
@@ -158,7 +158,7 @@ const Profile = () => {
       <FadeIn delay={0.1}>
       <section className="profile-section profile-section--honors" aria-labelledby="honors-title">
         <div className="profile-section__heading">
-          <AnimatedIcon animationData={starAnimation} loop speed={0.5} size={26} />
+          <AnimatedIcon animationData={starAnimation} boomerang speed={0.5} size={26} />
           <div>
             <p className="eyebrow">Highlights</p>
             <h2 id="honors-title">A few things I am proud of.</h2>
